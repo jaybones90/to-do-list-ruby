@@ -53,6 +53,10 @@ class List
     DB.exec("UPDATE lists SET name = '#{@name}' WHERE id = #{@id};")
   end
 
+  define_method(:delete) do
+    DB.exec("DELETE FROM lists WHERE id = #{self.id()};")
+    DB.exec("DELETE FROM tasks WHERE list_id = #{self.id()};")
+  end
 
 
 end

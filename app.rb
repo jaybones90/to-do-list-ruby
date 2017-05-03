@@ -53,3 +53,9 @@ post("/tasks") do
   @task.save()
   erb(:success)
 end
+
+delete("/lists/:id") do
+  @list = List.find(params.fetch("id").to_i())
+  @list.delete()
+  erb(:index)
+end
