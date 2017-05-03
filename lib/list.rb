@@ -3,8 +3,8 @@ class List
   attr_reader(:name, :id)
 
   define_method(:initialize) do |attributes|
-    @name = attributes.fetch(:name)
-    @id = attributes.fetch(:id)
+    @name = attributes[:name]
+    @id = attributes[:id]
   end
 
 
@@ -46,4 +46,13 @@ class List
     end
     list_tasks
   end
+
+  def update (attributes)
+    @name = attributes[:name]
+    @id = self.id()
+    DB.exec("UPDATE lists SET name = '#{@name}' WHERE id = #{@id};")
+  end
+
+
+
 end

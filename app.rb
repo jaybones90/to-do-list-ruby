@@ -22,6 +22,7 @@ post('/lists') do
   erb(:success)
 end
 
+
 get('/lists') do
   @lists = List.all
   erb(:lists)
@@ -29,6 +30,18 @@ end
 
 get("/lists/:id") do
   @list = List.find(params.fetch("id").to_i())
+  erb(:list)
+end
+
+get("/lists/:id/edit") do
+  @list = List.find(params.fetch("id").to_i())
+  erb(:list_edit)
+end
+
+patch("/lists/:id") do
+  name = params.fetch("name")
+  @list = List.find(params.fetch("id").to_i())
+  @list.update({:name => name})
   erb(:list)
 end
 
